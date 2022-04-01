@@ -25,7 +25,7 @@ export function forEach(inputArray, callback) {
   }
 }
 
-function mapWith(inputArray, callback) {
+export function mapWith(inputArray, callback) {
   let returnArray = []
 
   forEach(inputArray, (item, index) => {
@@ -35,7 +35,7 @@ function mapWith(inputArray, callback) {
   return returnArray
 }
 
-function reduce(inputArray, callback, initialValue) {
+export function reduce(inputArray, callback, initialValue) {
   let accum = initialValue ?? inputArray[0].slice()
 
   for (let i = 0; i < inputArray.length; i++) {
@@ -45,11 +45,11 @@ function reduce(inputArray, callback, initialValue) {
   return accum
 }
 
-function intersection(...arrays) {
+export function intersection(...arrays) {
   return reduce(arrays, intersectionOfTwoArrays)
 }
 
-const intersectionOfTwoArrays = (a, b) => {
+export const intersectionOfTwoArrays = (a, b) => {
   let returnArray = []
 
   b.forEach((item) => {
@@ -61,7 +61,7 @@ const intersectionOfTwoArrays = (a, b) => {
   return returnArray
 }
 
-function union(...arrays) {
+export function union(...arrays) {
   return arrays.reduce((acc, next) => {
     const newArray = next.filter((item) => !acc.includes(item))
     return acc.concat(newArray)
