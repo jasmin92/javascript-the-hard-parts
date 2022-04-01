@@ -1,5 +1,5 @@
 import { expect, test } from "vitest"
-import { addS, addTwo, multipleByTwo, map, forEach } from ".."
+import { addS, addTwo, multipleByTwo, map, forEach, reduce } from ".."
 
 test("addTwo", () => {
   const result = addTwo(1)
@@ -25,4 +25,10 @@ test("forEach", () => {
   forEach([1, 2, 3], callback)
 
   expect(result).toEqual([3, 4, 5])
+})
+
+test("reduce", () => {
+  let result = null
+  result = reduce([1, 2, 3], (a, b) => a + b, 0)
+  expect(result).toBe(6)
 })
