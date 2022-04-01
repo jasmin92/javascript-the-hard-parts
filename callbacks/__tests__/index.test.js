@@ -9,6 +9,7 @@ import {
   intersectionOfTwoArrays,
   intersection,
   union,
+  objOfMatches,
 } from ".."
 
 test("addTwo", () => {
@@ -62,4 +63,16 @@ test("union", () => {
       [100, 15, 10, 1, 5],
     ])
   ).toEqual([5, 10, 15, 88, 1, 7, 100])
+})
+
+test("objectOfMatches", () => {
+  const arra1 = ["hi", "howdy", "bye", "later", "hello"]
+  const arra2 = ["HI", "Howdy", "BYE", "LATER", "hello"]
+  const callback = (str) => str.toUpperCase()
+
+  expect(objOfMatches(arra1, arra2, callback)).toEqual({
+    hi: "HI",
+    bye: "BYE",
+    later: "LATER",
+  })
 })

@@ -67,3 +67,14 @@ export function union(arrays) {
     return acc.concat(newArray)
   })
 }
+
+export function objOfMatches(array1, array2, callback) {
+  const result = {}
+  array1.forEach((item, index) => {
+    let calculatedValue = callback(item)
+    if (calculatedValue === array2[index]) {
+      result[item] = array2[index]
+    }
+  })
+  return result
+}
