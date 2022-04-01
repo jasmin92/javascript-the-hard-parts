@@ -61,7 +61,7 @@ export const intersectionOfTwoArrays = (a, b) => {
   return returnArray
 }
 
-export function union(...arrays) {
+export function union(arrays) {
   return arrays.reduce((acc, next) => {
     const newArray = next.filter((item) => !acc.includes(item))
     return acc.concat(newArray)

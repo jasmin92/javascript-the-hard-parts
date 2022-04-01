@@ -8,6 +8,7 @@ import {
   reduce,
   intersectionOfTwoArrays,
   intersection,
+  union,
 } from ".."
 
 test("addTwo", () => {
@@ -51,4 +52,14 @@ test("intersection", () => {
   expect(intersection(array1, array2)).toEqual([1, 2])
   expect(intersection(array1, array2, array3)).toEqual([1])
   expect(intersection(array1, array4)).toEqual([])
+})
+
+test("union", () => {
+  expect(
+    union([
+      [5, 10, 15],
+      [15, 88, 1, 5, 7],
+      [100, 15, 10, 1, 5],
+    ])
+  ).toEqual([5, 10, 15, 88, 1, 7, 100])
 })
