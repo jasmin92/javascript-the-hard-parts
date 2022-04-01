@@ -1,0 +1,14 @@
+{
+  "name": "javascript-the-hard-parts",
+  "version": "1.0.0",
+  "description": "Javascript: The hard parts execices",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "author": "Jasmin Durakovic",
+  "license": "ISC",
+  "devDependencies": {
+    "vitest": "^0.8.1"
+  }
+}
