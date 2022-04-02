@@ -13,6 +13,7 @@ import {
   multiMap,
   objectFilter,
   majority,
+  prioritize,
 } from '..'
 
 test('addTwo', () => {
@@ -110,4 +111,12 @@ test('majority', () => {
   expect(majority([1, 2, 3, 4, 5], isOdd)).toBe(true)
   expect(majority([1, 2, 3, 4], isOdd)).toBe(false)
   expect(majority([1, 2, 4, 6], isOdd)).toBe(false)
+})
+
+test('prioritize', () => {
+  const startsWithS = function (str) {
+    return str[0] === 's' || str[0] === 'S'
+  }
+  const result = prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)
+  expect(result).toEqual(['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'])
 })

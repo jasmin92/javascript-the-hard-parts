@@ -107,3 +107,14 @@ export function majority(array, callback) {
 
   return trueValues > array.length - trueValues
 }
+
+export function prioritize(array, callback) {
+  let trueValues = []
+  let falseValues = []
+  array.forEach((item) => {
+    if (callback(item)) trueValues.push(item)
+    else falseValues.push(item)
+  })
+
+  return [...trueValues, ...falseValues]
+}
