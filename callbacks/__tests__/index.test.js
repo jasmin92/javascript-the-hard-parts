@@ -12,6 +12,7 @@ import {
   objOfMatches,
   multiMap,
   objectFilter,
+  majority,
 } from '..'
 
 test('addTwo', () => {
@@ -100,4 +101,13 @@ test('objectFilter', () => {
     Paris: 'PARIS',
   }
   expect(objectFilter(cities, (city) => city.toUpperCase())).toEqual({ London: 'LONDON', Paris: 'PARIS' })
+})
+
+test('majority', () => {
+  const isOdd = function (num) {
+    return num % 2 === 1
+  }
+  expect(majority([1, 2, 3, 4, 5], isOdd)).toBe(true)
+  expect(majority([1, 2, 3, 4], isOdd)).toBe(false)
+  expect(majority([1, 2, 4, 6], isOdd)).toBe(false)
 })

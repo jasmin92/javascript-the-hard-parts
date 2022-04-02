@@ -98,3 +98,12 @@ export function objectFilter(object, callback) {
 
   return output
 }
+
+export function majority(array, callback) {
+  let trueValues = 0
+  array.forEach((item) => {
+    if (callback(item)) trueValues++
+  })
+
+  return trueValues > array.length - trueValues
+}
