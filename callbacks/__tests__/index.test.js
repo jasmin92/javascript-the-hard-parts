@@ -1,4 +1,4 @@
-import { expect, test } from "vitest"
+import { expect, test } from 'vitest'
 import {
   addS,
   addTwo,
@@ -11,27 +11,28 @@ import {
   union,
   objOfMatches,
   multiMap,
-} from ".."
+  objectFilter,
+} from '..'
 
-test("addTwo", () => {
+test('addTwo', () => {
   const result = addTwo(1)
   expect(result).toBe(3)
 })
 
-test("addS", () => {
-  expect(addS("dog")).toBe("dogs")
+test('addS', () => {
+  expect(addS('dog')).toBe('dogs')
 })
 
-test("multipleByTwo", () => {
+test('multipleByTwo', () => {
   expect(multipleByTwo(2)).toBe(4)
 })
 
-test("map", () => {
+test('map', () => {
   const result = map([1, 2, 3], (a) => a + 1)
   expect(result).toEqual([2, 3, 4])
 })
 
-test("forEach", () => {
+test('forEach', () => {
   let result = []
   const callback = (item, index) => (result[index] = item + 2)
   forEach([1, 2, 3], callback)
@@ -39,12 +40,12 @@ test("forEach", () => {
   expect(result).toEqual([3, 4, 5])
 })
 
-test("reduce", () => {
+test('reduce', () => {
   const result = reduce([1, 2, 3], (a, b) => a + b, 0)
   expect(result).toBe(6)
 })
 
-test("intersection", () => {
+test('intersection', () => {
   const array1 = [1, 2]
   const array2 = [1, 2, 3]
   const array3 = [1, 4, 5, 7]
@@ -56,7 +57,7 @@ test("intersection", () => {
   expect(intersection(array1, array4)).toEqual([])
 })
 
-test("union", () => {
+test('union', () => {
   expect(
     union([
       [5, 10, 15],
@@ -66,28 +67,37 @@ test("union", () => {
   ).toEqual([5, 10, 15, 88, 1, 7, 100])
 })
 
-test("objectOfMatches", () => {
-  const arra1 = ["hi", "howdy", "bye", "later", "hello"]
-  const arra2 = ["HI", "Howdy", "BYE", "LATER", "hello"]
+test('objectOfMatches', () => {
+  const arra1 = ['hi', 'howdy', 'bye', 'later', 'hello']
+  const arra2 = ['HI', 'Howdy', 'BYE', 'LATER', 'hello']
   const callback = (str) => str.toUpperCase()
 
   expect(objOfMatches(arra1, arra2, callback)).toEqual({
-    hi: "HI",
-    bye: "BYE",
-    later: "LATER",
+    hi: 'HI',
+    bye: 'BYE',
+    later: 'LATER',
   })
 })
 
-test("multiMap", () => {
-  const values = ["catfood", "glue", "beer"]
+test('multiMap', () => {
+  const values = ['catfood', 'glue', 'beer']
   const callback1 = (str) => str.toUpperCase()
   const callback2 = (str) => str[0].toUpperCase() + str.slice(1).toLowerCase()
   const callback3 = (str) => str + str
 
   const result = multiMap(values, [callback1, callback2, callback3])
   expect(result).toEqual({
-    catfood: ["CATFOOD", "Catfood", "catfoodcatfood"],
-    glue: ["GLUE", "Glue", "glueglue"],
-    beer: ["BEER", "Beer", "beerbeer"],
+    catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'],
+    glue: ['GLUE', 'Glue', 'glueglue'],
+    beer: ['BEER', 'Beer', 'beerbeer'],
   })
+})
+
+test('objectFilter', () => {
+  const cities = {
+    London: 'LONDON',
+    LA: 'Los Angeles',
+    Paris: 'PARIS',
+  }
+  expect(objectFilter(cities, (city) => city.toUpperCase())).toEqual({ London: 'LONDON', Paris: 'PARIS' })
 })

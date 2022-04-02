@@ -4,7 +4,7 @@ export function addTwo(num) {
 }
 
 export function addS(input) {
-  return input + "s"
+  return input + 's'
 }
 
 export const multipleByTwo = (value) => value * 2
@@ -83,6 +83,17 @@ export function multiMap(values, callbacks) {
   let output = {}
   values.forEach((item) => {
     output[item] = callbacks.map((callback) => callback(item))
+  })
+
+  return output
+}
+
+export function objectFilter(object, callback) {
+  const output = {}
+  Object.keys(object).forEach((key) => {
+    if (callback(key) === object[key]) {
+      output[key] = object[key]
+    }
   })
 
   return output
