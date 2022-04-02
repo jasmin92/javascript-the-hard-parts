@@ -78,3 +78,12 @@ export function objOfMatches(array1, array2, callback) {
   })
   return result
 }
+
+export function multiMap(values, callbacks) {
+  let output = {}
+  values.forEach((item) => {
+    output[item] = callbacks.map((callback) => callback(item))
+  })
+
+  return output
+}

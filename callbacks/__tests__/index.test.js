@@ -10,6 +10,7 @@ import {
   intersection,
   union,
   objOfMatches,
+  multiMap,
 } from ".."
 
 test("addTwo", () => {
@@ -74,5 +75,19 @@ test("objectOfMatches", () => {
     hi: "HI",
     bye: "BYE",
     later: "LATER",
+  })
+})
+
+test("multiMap", () => {
+  const values = ["catfood", "glue", "beer"]
+  const callback1 = (str) => str.toUpperCase()
+  const callback2 = (str) => str[0].toUpperCase() + str.slice(1).toLowerCase()
+  const callback3 = (str) => str + str
+
+  const result = multiMap(values, [callback1, callback2, callback3])
+  expect(result).toEqual({
+    catfood: ["CATFOOD", "Catfood", "catfoodcatfood"],
+    glue: ["GLUE", "Glue", "glueglue"],
+    beer: ["BEER", "Beer", "beerbeer"],
   })
 })
