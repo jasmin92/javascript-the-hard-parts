@@ -14,6 +14,7 @@ import {
   objectFilter,
   majority,
   prioritize,
+  countBy,
 } from '..'
 
 test('addTwo', () => {
@@ -119,4 +120,12 @@ test('prioritize', () => {
   }
   const result = prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)
   expect(result).toEqual(['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'])
+})
+
+test('countBy', () => {
+  function oddOrEven(num) {
+    if (num % 2 === 0) return 'even'
+    else return 'odd'
+  }
+  expect(countBy([1, 2, 3, 4, 5], oddOrEven)).toEqual({ odd: 3, even: 2 })
 })

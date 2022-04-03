@@ -118,3 +118,14 @@ export function prioritize(array, callback) {
 
   return [...trueValues, ...falseValues]
 }
+
+export function countBy(array, callback) {
+  let output = {}
+  array.forEach((item) => {
+    let currentResult = callback(item)
+    if (output[currentResult]) output[currentResult]++
+    else output[currentResult] = 1
+  })
+
+  return output
+}
