@@ -15,6 +15,7 @@ import {
   majority,
   prioritize,
   countBy,
+  groupBy,
 } from '..'
 
 test('addTwo', () => {
@@ -128,4 +129,12 @@ test('countBy', () => {
     else return 'odd'
   }
   expect(countBy([1, 2, 3, 4, 5], oddOrEven)).toEqual({ odd: 3, even: 2 })
+})
+
+test('groupBy', () => {
+  const decimals = [1.3, 2.1, 2.4]
+  const floored = function (num) {
+    return Math.floor(num)
+  }
+  expect(groupBy(decimals, floored)).toEqual({ 1: [1.3], 2: [2.1, 2.4] })
 })

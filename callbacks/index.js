@@ -129,3 +129,14 @@ export function countBy(array, callback) {
 
   return output
 }
+
+export function groupBy(array, callback) {
+  const output = {}
+  array.forEach((item) => {
+    let currentResult = callback(item)
+    if (output[currentResult]) output[currentResult].push(item)
+    else output[currentResult] = [item]
+  })
+
+  return output
+}
