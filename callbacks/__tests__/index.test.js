@@ -18,6 +18,7 @@ import {
   groupBy,
   goodKeys,
   commutative,
+  objFilter,
 } from '..'
 
 test('addTwo', () => {
@@ -158,4 +159,14 @@ test('commumative', () => {
   expect(commutative(multBy3, divBy4, 11)).toBe(true)
   expect(commutative(multBy3, subtract5, 10)).toBe(false)
   expect(commutative(divBy4, subtract5, 48)).toBe(false)
+})
+
+test('objFilter', () => {
+  const startingObj = {}
+  startingObj[6] = 3
+  startingObj[2] = 1
+  startingObj[12] = 4
+  const half = (n) => n / 2
+
+  expect(objFilter(startingObj, half)).toEqual({ 2: 1, 6: 3 })
 })

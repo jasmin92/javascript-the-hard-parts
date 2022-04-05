@@ -152,3 +152,14 @@ export function goodKeys(object, callback) {
 export function commutative(callback1, callback2, value) {
   return callback2(callback1(value)) === callback1(callback2(value))
 }
+
+export function objFilter(object, callback) {
+  let output = {}
+  Object.keys(object).forEach((key) => {
+    if (callback(key) === object[key]) {
+      output[key] = object[key]
+    }
+  })
+
+  return output
+}
