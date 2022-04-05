@@ -16,6 +16,7 @@ import {
   prioritize,
   countBy,
   groupBy,
+  goodKeys,
 } from '..'
 
 test('addTwo', () => {
@@ -137,4 +138,13 @@ test('groupBy', () => {
     return Math.floor(num)
   }
   expect(groupBy(decimals, floored)).toEqual({ 1: [1.3], 2: [2.1, 2.4] })
+})
+
+test('goodKeys', () => {
+  const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' }
+  const startsWithBird = function (str) {
+    return str.slice(0, 4).toLowerCase() === 'bird'
+  }
+
+  expect(goodKeys(sunny, startsWithBird)).toEqual(['charlie', 'dee'])
 })

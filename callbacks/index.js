@@ -140,3 +140,11 @@ export function groupBy(array, callback) {
 
   return output
 }
+
+export function goodKeys(object, callback) {
+  return Object.keys(object).reduce((acc, next) => {
+    let currentResult = callback(object[next])
+    if (currentResult) acc.push(next)
+    return acc
+  }, [])
+}
