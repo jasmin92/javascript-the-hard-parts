@@ -148,3 +148,7 @@ export function goodKeys(object, callback) {
     return acc
   }, [])
 }
+
+export function commutative(callback1, callback2, value) {
+  return callback2(callback1(value)) === callback1(callback2(value))
+}
