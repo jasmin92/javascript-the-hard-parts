@@ -20,6 +20,7 @@ import {
   commutative,
   objFilter,
   rating,
+  pipe,
 } from '..'
 
 test('addTwo', () => {
@@ -181,4 +182,12 @@ test('rating', () => {
 
   expect(rating(checks, 64)).toBe(100)
   expect(rating(checks, 66)).toBe(75)
+})
+
+test('pipe', () => {
+  const capitalize = (str) => str.toUpperCase()
+  const addLowerCase = (str) => str + str.toLowerCase()
+  const repeat = (str) => str + str
+  const capAddlowRepeat = [capitalize, addLowerCase, repeat]
+  expect(pipe(capAddlowRepeat, 'cat')).toBe('CATcatCATcat')
 })

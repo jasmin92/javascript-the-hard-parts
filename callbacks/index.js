@@ -172,3 +172,9 @@ export function rating(functions, value) {
 
   return (trueValues / functions.length) * 100
 }
+
+export function pipe(functions, value) {
+  let output = value
+  functions.forEach((fn) => (output = fn(output)))
+  return output
+}
