@@ -163,3 +163,12 @@ export function objFilter(object, callback) {
 
   return output
 }
+
+export function rating(functions, value) {
+  let trueValues = 0
+  functions.forEach((fn) => {
+    if (fn(value)) trueValues++
+  })
+
+  return (trueValues / functions.length) * 100
+}

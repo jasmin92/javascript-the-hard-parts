@@ -19,6 +19,7 @@ import {
   goodKeys,
   commutative,
   objFilter,
+  rating,
 } from '..'
 
 test('addTwo', () => {
@@ -169,4 +170,15 @@ test('objFilter', () => {
   const half = (n) => n / 2
 
   expect(objFilter(startingObj, half)).toEqual({ 2: 1, 6: 3 })
+})
+
+test('rating', () => {
+  const isEven = (n) => n % 2 === 0
+  const greaterThanFour = (n) => n > 4
+  const isSquare = (n) => Math.sqrt(n) % 1 === 0
+  const hasSix = (n) => n.toString().includes('6')
+  const checks = [isEven, greaterThanFour, isSquare, hasSix]
+
+  expect(rating(checks, 64)).toBe(100)
+  expect(rating(checks, 66)).toBe(75)
 })
