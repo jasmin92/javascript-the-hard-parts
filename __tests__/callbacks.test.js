@@ -23,7 +23,7 @@ import {
   pipe,
   highestFunc,
   combineOperations,
-} from '..'
+} from '../callbacks'
 
 test('addTwo', () => {
   const result = addTwo(1)
