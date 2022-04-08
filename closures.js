@@ -25,3 +25,13 @@ export function addBy(input) {
     return input + value
   }
 }
+
+export function once(callback) {
+  let cache = null
+
+  return function (...args) {
+    if (cache) return cache
+    cache = callback(...args)
+    return cache
+  }
+}
