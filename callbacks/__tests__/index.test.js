@@ -22,6 +22,7 @@ import {
   rating,
   pipe,
   highestFunc,
+  combineOperations,
 } from '..'
 
 test('addTwo', () => {
@@ -202,4 +203,12 @@ test('highestFunc', () => {
   expect(highestFunc(groupOfFuncs, 5)).toBe('addTen')
   expect(highestFunc(groupOfFuncs, 11)).toBe('double')
   expect(highestFunc(groupOfFuncs, -20)).toBe('inverse')
+})
+
+test('combineOperators', () => {
+  const add100 = (num) => num + 100
+  const divByFive = (num) => num / 5
+  const multipleByThree = (num) => num * 3
+
+  expect(combineOperations(0, [add100, divByFive, multipleByThree])).toBe(60)
 })

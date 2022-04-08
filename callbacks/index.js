@@ -192,3 +192,7 @@ export function highestFunc(obj, subject) {
 
   return highestKey
 }
+
+export function combineOperations(value, functions) {
+  return pipe(functions, value)
+}
