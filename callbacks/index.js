@@ -178,3 +178,17 @@ export function pipe(functions, value) {
   functions.forEach((fn) => (output = fn(output)))
   return output
 }
+
+export function highestFunc(obj, subject) {
+  let highestKey = null
+  let highestValue = Number.MIN_VALUE
+  Object.keys(obj).forEach((key) => {
+    let fnValue = obj[key](subject)
+    if (fnValue > highestValue) {
+      highestValue = fnValue
+      highestKey = key
+    }
+  })
+
+  return highestKey
+}

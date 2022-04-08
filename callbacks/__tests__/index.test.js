@@ -21,6 +21,7 @@ import {
   objFilter,
   rating,
   pipe,
+  highestFunc,
 } from '..'
 
 test('addTwo', () => {
@@ -190,4 +191,15 @@ test('pipe', () => {
   const repeat = (str) => str + str
   const capAddlowRepeat = [capitalize, addLowerCase, repeat]
   expect(pipe(capAddlowRepeat, 'cat')).toBe('CATcatCATcat')
+})
+
+test('highestFunc', () => {
+  const groupOfFuncs = {}
+  groupOfFuncs.double = (n) => n * 2
+  groupOfFuncs.addTen = (n) => n + 10
+  groupOfFuncs.inverse = (n) => n * -1
+
+  expect(highestFunc(groupOfFuncs, 5)).toBe('addTen')
+  expect(highestFunc(groupOfFuncs, 11)).toBe('double')
+  expect(highestFunc(groupOfFuncs, -20)).toBe('inverse')
 })
