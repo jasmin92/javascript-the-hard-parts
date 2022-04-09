@@ -1,5 +1,5 @@
 import { test, expect, vi } from 'vitest'
-import { createFunction, createFunctionPrinter, addBy, once, after, delay } from '../closures'
+import { createFunction, createFunctionPrinter, addBy, once, after, delay, rollCall } from '../closures'
 
 test('createFunction', () => {
   const testFunction = createFunction()
@@ -43,12 +43,27 @@ test('after', () => {
   expect(mockFunction).toHaveBeenCalledOnce()
 })
 
-test('delay', async () => {
-  const mockFn = vi.fn()
-  const testDelay = delay(mockFn, 1000)
-  testDelay()
-  expect(mockFn).not.toHaveBeenCalled()
+// test('delay', async () => {
+//   const mockFn = vi.fn()
+//   const testDelay = delay(mockFn, 1000)
+//   testDelay()
+//   expect(mockFn).not.toHaveBeenCalled()
 
-  await new Promise((r) => setTimeout(r, 1000))
-  expect(mockFn).toHaveBeenCalled()
+//   await new Promise((r) => setTimeout(r, 1000))
+//   expect(mockFn).toHaveBeenCalled()
+// })
+
+test('rollCall', () => {
+  const names = ['Victoria', 'Juan', 'Ruth']
+  const rollCaller = rollCall(names)
+  const consoleMock = vi.spyOn(console, 'log').mockImplementation()
+
+  names.forEach((name) => {
+    rollCaller()
+    expect(consoleMock).toHaveBeenCalledWith(name)
+    consoleMock.mockClear()
+  })
+
+  rollCaller()
+  expect(consoleMock).toHaveBeenCalledWith('Everyone accounted so far')
 })

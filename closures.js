@@ -55,3 +55,15 @@ export function delay(func, wait) {
     }, wait)
   }
 }
+
+export function rollCall(names) {
+  let toBeCalled = [...names]
+  return function () {
+    const name = toBeCalled.shift()
+    if (name) {
+      console.log(name)
+    } else {
+      console.log('Everyone accounted so far')
+    }
+  }
+}
