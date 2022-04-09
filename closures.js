@@ -77,3 +77,13 @@ export function saveOutput(func, magicWord) {
     return func(value)
   }
 }
+
+export function cycleIterator(array) {
+  let lastIndex = 0
+  return function () {
+    if (array.length === 0) return 0
+    if (!array[lastIndex]) return array[0]
+
+    return array[lastIndex++]
+  }
+}

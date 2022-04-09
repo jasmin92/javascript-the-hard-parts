@@ -1,5 +1,15 @@
 import { test, expect, vi } from 'vitest'
-import { createFunction, createFunctionPrinter, addBy, once, after, delay, rollCall, saveOutput } from '../closures'
+import {
+  createFunction,
+  createFunctionPrinter,
+  addBy,
+  once,
+  after,
+  delay,
+  rollCall,
+  saveOutput,
+  cycleIterator,
+} from '../closures'
 
 test('createFunction', () => {
   const testFunction = createFunction()
@@ -77,4 +87,14 @@ test('saveOutput', () => {
   expect(multBy2AndLog(2)).toBe(4)
   expect(multBy2AndLog(9)).toBe(18)
   expect(multBy2AndLog('boo')).toEqual({ 2: 4, 9: 18 })
+})
+
+test('cycleIterator', () => {
+  const threeDayWeekend = ['Fri', 'Sat', 'Sun']
+  const getDay = cycleIterator(threeDayWeekend)
+
+  expect(getDay()).toBe('Fri')
+  expect(getDay()).toBe('Sat')
+  expect(getDay()).toBe('Sun')
+  expect(getDay()).toBe('Fri')
 })
