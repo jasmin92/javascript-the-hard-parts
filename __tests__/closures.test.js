@@ -1,5 +1,5 @@
 import { test, expect, vi } from 'vitest'
-import { createFunction, createFunctionPrinter, addBy, once, after } from '../closures'
+import { createFunction, createFunctionPrinter, addBy, once, after, delay } from '../closures'
 
 test('createFunction', () => {
   const testFunction = createFunction()
@@ -41,4 +41,14 @@ test('after', () => {
   expect(mockFunction).not.toHaveBeenCalled()
   afterCalled()
   expect(mockFunction).toHaveBeenCalledOnce()
+})
+
+test('delay', async () => {
+  const mockFn = vi.fn()
+  const testDelay = delay(mockFn, 1000)
+  testDelay()
+  expect(mockFn).not.toHaveBeenCalled()
+
+  await new Promise((r) => setTimeout(r, 1000))
+  expect(mockFn).toHaveBeenCalled()
 })

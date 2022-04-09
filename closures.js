@@ -47,3 +47,11 @@ export function after(count, func) {
     }
   }
 }
+
+export function delay(func, wait) {
+  return function () {
+    setTimeout(() => {
+      func()
+    }, wait)
+  }
+}
