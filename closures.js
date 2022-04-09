@@ -99,3 +99,18 @@ export function dateStamp(func) {
     return { date: new Date(), output: func(...args) }
   }
 }
+
+export function censor() {
+  const pairs = {}
+  return function (value1, value2) {
+    if (value2) {
+      pairs[value1] = value2
+    } else {
+      let returnString = value1
+      Object.keys(pairs).forEach((key) => {
+        returnString = returnString.replace(key, pairs[key])
+      })
+      return returnString
+    }
+  }
+}

@@ -11,6 +11,7 @@ import {
   cycleIterator,
   defineFirstArg,
   dateStamp,
+  censor,
 } from '../closures'
 
 describe.concurrent('sync', () => {
@@ -115,5 +116,14 @@ describe.concurrent('sync', () => {
     const stampedMultBy2 = dateStamp((n) => n * 2)
     expect(stampedMultBy2(4)).toEqual({ date: new Date(), output: 8 })
     expect(stampedMultBy2(6)).toEqual({ date: new Date(), output: 12 })
+  })
+
+  test('censor', () => {
+    const changeScene = censor()
+    changeScene('dogs', 'cats')
+    changeScene('quick', 'slow')
+    expect(changeScene('The quick, brown fox jumps over the lazy dogs.')).toBe(
+      'The slow, brown fox jumps over the lazy cats.'
+    )
   })
 })
