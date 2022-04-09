@@ -35,3 +35,15 @@ export function once(callback) {
     return cache
   }
 }
+
+export function after(count, func) {
+  let called = 0
+
+  return function () {
+    if (called === count) {
+      func()
+    } else {
+      called++
+    }
+  }
+}

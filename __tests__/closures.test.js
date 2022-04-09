@@ -1,5 +1,5 @@
-import { test, expect } from 'vitest'
-import { createFunction, createFunctionPrinter, addBy, once } from '../closures'
+import { test, expect, vi } from 'vitest'
+import { createFunction, createFunctionPrinter, addBy, once, after } from '../closures'
 
 test('createFunction', () => {
   const testFunction = createFunction()
@@ -29,4 +29,16 @@ test('once', () => {
   expect(onceFunc(4, 2)).toBe(6)
   expect(onceFunc(12)).toBe(6)
   expect(onceFunc(5001)).toBe(6)
+})
+
+test('after', () => {
+  const mockFunction = vi.fn()
+  const afterCalled = after(3, mockFunction)
+
+  afterCalled()
+  afterCalled()
+  afterCalled()
+  expect(mockFunction).not.toHaveBeenCalled()
+  afterCalled()
+  expect(mockFunction).toHaveBeenCalledOnce()
 })
