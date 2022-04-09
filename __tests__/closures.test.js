@@ -1,5 +1,5 @@
 import { test, expect, vi } from 'vitest'
-import { createFunction, createFunctionPrinter, addBy, once, after, delay, rollCall } from '../closures'
+import { createFunction, createFunctionPrinter, addBy, once, after, delay, rollCall, saveOutput } from '../closures'
 
 test('createFunction', () => {
   const testFunction = createFunction()
@@ -66,4 +66,15 @@ test('rollCall', () => {
 
   rollCaller()
   expect(consoleMock).toHaveBeenCalledWith('Everyone accounted so far')
+})
+
+test('saveOutput', () => {
+  const multiplyBy2 = function (num) {
+    return num * 2
+  }
+  const multBy2AndLog = saveOutput(multiplyBy2, 'boo')
+
+  expect(multBy2AndLog(2)).toBe(4)
+  expect(multBy2AndLog(9)).toBe(18)
+  expect(multBy2AndLog('boo')).toEqual({ 2: 4, 9: 18 })
 })

@@ -67,3 +67,13 @@ export function rollCall(names) {
     }
   }
 }
+
+export function saveOutput(func, magicWord) {
+  let passedValues = {}
+  return function (value) {
+    if (value === magicWord) return passedValues
+    const result = func(value)
+    passedValues[value] = result
+    return func(value)
+  }
+}
