@@ -43,15 +43,15 @@ test('after', () => {
   expect(mockFunction).toHaveBeenCalledOnce()
 })
 
-// test('delay', async () => {
-//   const mockFn = vi.fn()
-//   const testDelay = delay(mockFn, 1000)
-//   testDelay()
-//   expect(mockFn).not.toHaveBeenCalled()
+test('delay', async () => {
+  const mockFn = vi.fn()
+  const testDelay = delay(mockFn, 1000)
+  testDelay()
+  expect(mockFn).not.toHaveBeenCalled()
 
-//   await new Promise((r) => setTimeout(r, 1000))
-//   expect(mockFn).toHaveBeenCalled()
-// })
+  await new Promise((r) => setTimeout(r, 1000))
+  expect(mockFn).toHaveBeenCalled()
+})
 
 test('rollCall', () => {
   const names = ['Victoria', 'Juan', 'Ruth']
