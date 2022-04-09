@@ -87,3 +87,15 @@ export function cycleIterator(array) {
     return array[lastIndex++]
   }
 }
+
+export function defineFirstArg(func, arg) {
+  return function (value) {
+    return func(arg, value)
+  }
+}
+
+export function dateStamp(func) {
+  return function (...args) {
+    return { date: new Date(), output: func(...args) }
+  }
+}
