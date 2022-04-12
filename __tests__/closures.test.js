@@ -12,6 +12,7 @@ import {
   defineFirstArg,
   dateStamp,
   censor,
+  createSecretHolder,
 } from '../closures'
 
 describe.concurrent('sync', () => {
@@ -125,5 +126,12 @@ describe.concurrent('sync', () => {
     expect(changeScene('The quick, brown fox jumps over the lazy dogs.')).toBe(
       'The slow, brown fox jumps over the lazy cats.'
     )
+  })
+
+  test('createSecretHolder', () => {
+    const obj = createSecretHolder(5)
+    expect(obj.getSecret()).toBe(5)
+    obj.setSecret(2)
+    expect(obj.getSecret()).toBe(2)
   })
 })

@@ -114,3 +114,15 @@ export function censor() {
     }
   }
 }
+
+export function createSecretHolder(secret) {
+  let storedSecret = secret
+  return {
+    getSecret: function () {
+      return storedSecret
+    },
+    setSecret: function (value) {
+      storedSecret = value
+    },
+  }
+}
