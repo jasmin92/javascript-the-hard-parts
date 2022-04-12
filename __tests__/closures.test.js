@@ -13,6 +13,8 @@ import {
   dateStamp,
   censor,
   createSecretHolder,
+  callTimes,
+  russianRoulette,
 } from '../closures'
 
 describe.concurrent('sync', () => {
@@ -133,5 +135,23 @@ describe.concurrent('sync', () => {
     expect(obj.getSecret()).toBe(5)
     obj.setSecret(2)
     expect(obj.getSecret()).toBe(2)
+  })
+
+  test('callTimes', () => {
+    let myNewFunc1 = callTimes()
+    let myNewFunc2 = callTimes()
+    expect(myNewFunc1()).toBe(1)
+    expect(myNewFunc1()).toBe(2)
+    expect(myNewFunc2()).toBe(1)
+    expect(myNewFunc2()).toBe(2)
+  })
+
+  test('russianRoulette', () => {
+    const play = russianRoulette(3)
+    expect(play()).toBe('click')
+    expect(play()).toBe('click')
+    expect(play()).toBe('bang')
+    expect(play()).toBe('reload to play again')
+    expect(play()).toBe('reload to play again')
   })
 })

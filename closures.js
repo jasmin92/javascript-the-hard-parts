@@ -126,3 +126,23 @@ export function createSecretHolder(secret) {
     },
   }
 }
+
+export function callTimes() {
+  let getCalledCount = 0
+  return function () {
+    return ++getCalledCount
+  }
+}
+
+export function russianRoulette(num) {
+  let count = 0
+  return function () {
+    count++
+    if (count === num) {
+      return 'bang'
+    } else if (count > num) return 'reload to play again'
+    else {
+      return 'click'
+    }
+  }
+}
