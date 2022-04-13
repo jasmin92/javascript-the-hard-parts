@@ -15,6 +15,7 @@ import {
   createSecretHolder,
   callTimes,
   russianRoulette,
+  average,
 } from '../closures'
 
 describe.concurrent('sync', () => {
@@ -153,5 +154,15 @@ describe.concurrent('sync', () => {
     expect(play()).toBe('bang')
     expect(play()).toBe('reload to play again')
     expect(play()).toBe('reload to play again')
+  })
+
+  test('average', () => {
+    const avgSoFar = average()
+    expect(avgSoFar()).toBe(0)
+    expect(avgSoFar(4)).toBe(4)
+    expect(avgSoFar(8)).toBe(6)
+    expect(avgSoFar()).toBe(6)
+    expect(avgSoFar(12)).toBe(8)
+    expect(avgSoFar()).toBe(8)
   })
 })

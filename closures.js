@@ -146,3 +146,16 @@ export function russianRoulette(num) {
     }
   }
 }
+
+export function average() {
+  let nums = []
+  const currentAverage = () => nums.reduce((curr, next) => curr + next, 0) / nums.length
+
+  return function (num) {
+    if (num) {
+      nums.push(num)
+      return currentAverage()
+    }
+    return nums.length === 0 ? 0 : currentAverage()
+  }
+}
