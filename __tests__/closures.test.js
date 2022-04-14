@@ -16,6 +16,8 @@ import {
   callTimes,
   russianRoulette,
   average,
+  makeFuncTest,
+  makeHistory,
 } from '../closures'
 
 describe.concurrent('sync', () => {
@@ -164,5 +166,29 @@ describe.concurrent('sync', () => {
     expect(avgSoFar()).toBe(6)
     expect(avgSoFar(12)).toBe(8)
     expect(avgSoFar()).toBe(8)
+  })
+
+  test('makeFuncTest', () => {
+    const capLastTestCases = []
+    capLastTestCases.push(['hello', 'hellO'])
+    capLastTestCases.push(['goodbye', 'goodbyE'])
+    capLastTestCases.push(['howdy', 'howdY'])
+    const shouldCapitalizeLast = makeFuncTest(capLastTestCases)
+    const capLastAttempt1 = (str) => str.toUpperCase()
+    const capLastAttempt2 = (str) => str.slice(0, -1) + str.slice(-1).toUpperCase()
+    expect(shouldCapitalizeLast(capLastAttempt1)).toBe(false)
+    expect(shouldCapitalizeLast(capLastAttempt2)).toBe(true)
+  })
+
+  test('makeHistory', () => {
+    const myActions = makeHistory(2)
+    expect(myActions('jump')).toBe('jump done')
+    expect(myActions('undo')).toBe('jump undone')
+    expect(myActions('walk')).toBe('walk done')
+    expect(myActions('code')).toBe('code done')
+    expect(myActions('pose')).toBe('pose done')
+    expect(myActions('undo')).toBe('pose undone')
+    expect(myActions('undo')).toBe('code undone')
+    expect(myActions('undo')).toBe('nothing to undo')
   })
 })

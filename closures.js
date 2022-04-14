@@ -159,3 +159,29 @@ export function average() {
     return nums.length === 0 ? 0 : currentAverage()
   }
 }
+
+export function makeFuncTest(arrayOfTests) {
+  return function (callback) {
+    let allPositive = true
+    arrayOfTests.forEach((subArray) => {
+      if (callback(subArray[0]) !== subArray[1]) {
+        allPositive = false
+        return
+      }
+    })
+
+    return allPositive
+  }
+}
+
+export function makeHistory(limit) {
+  let history = []
+  return function (value) {
+    if (value === 'undo') {
+      return history.length === 0 ? 'nothing to undo' : history.pop() + ' undone'
+    }
+    if (history.length === limit) history.shift()
+    history.push(value)
+    return value + ' done'
+  }
+}
