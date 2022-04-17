@@ -1,5 +1,5 @@
 import { test, expect, vi, describe, beforeEach, afterEach } from 'vitest'
-import { delayCounter, delayedGreet, everyXsecsForYsecs, limitedRepeat, promised } from '../async'
+import { delayCounter, delayedGreet, everyXsecsForYsecs, limitedRepeat, promised, SecondClock } from '../async'
 import { wait } from '../utils'
 
 // describe.concurrent('', () => {})
@@ -35,15 +35,32 @@ afterEach(() => {
 //   expect(mockFunction).not.toHaveBeenCalledTimes(4)
 // })
 
-test('delayCounter', async () => {
-  delayCounter(5, 50)
-  for (let i = 1; i <= 5; i++) {
-    await wait(50)
+// test('delayCounter', async () => {
+//   delayCounter(5, 50)
+//   for (let i = 1; i <= 5; i++) {
+//     await wait(50)
+//     expect(consoleMock).toHaveBeenCalledWith(i)
+//   }
+// })
+
+// test('promised', async () => {
+//   const value = await promised('hello')
+//   expect(value).toBe('hello')
+// })
+
+test('secondClock', async () => {
+  const clock = new SecondClock((val) => {
+    console.log(val)
+  })
+  for (let i = 1; i <= 2; i++) {
+    await wait(1000)
     expect(consoleMock).toHaveBeenCalledWith(i)
   }
-})
 
-test('promised', async () => {
-  const value = await promised('hello')
-  expect(value).toBe('hello')
+  clock.reset()
+  clock.start()
+
+  await wait(1000)
+  expect(consoleMock).toHaveBeenLastCalledWith(1)
+  clock.reset()
 })

@@ -42,4 +42,24 @@ export function promised(value) {
   return new Promise((reslove) => setTimeout(() => reslove(value), 2000))
 }
 
-// export class
+export class SecondClock {
+  constructor(cb) {
+    this.calback = null
+    this.intervalId = null
+    this.currentTime = 1
+    this.calback = cb
+    this.start()
+  }
+
+  start() {
+    this.intervalId = setInterval(() => {
+      this.calback(this.currentTime++)
+    }, 1000)
+    this.calback()
+  }
+
+  reset() {
+    clearInterval(this.intervalId)
+    this.currentTime = 1
+  }
+}
