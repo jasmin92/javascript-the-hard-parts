@@ -19,6 +19,7 @@ import {
   makeFuncTest,
   makeHistory,
 } from '../closures'
+import { wait } from '../utils'
 
 describe.concurrent('sync', () => {
   test('createFunction', () => {
@@ -69,7 +70,7 @@ describe.concurrent('sync', () => {
     testDelay()
     expect(mockFn).not.toHaveBeenCalled()
 
-    await new Promise((r) => setTimeout(r, 1000))
+    await wait(1000)
     expect(mockFn).toHaveBeenCalled()
   })
 
