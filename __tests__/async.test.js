@@ -1,5 +1,5 @@
 import { test, expect, vi, describe, beforeEach, afterEach } from 'vitest'
-import { delayCounter, delayedGreet, everyXsecsForYsecs, limitedRepeat } from '../async'
+import { delayCounter, delayedGreet, everyXsecsForYsecs, limitedRepeat, promised } from '../async'
 import { wait } from '../utils'
 
 // describe.concurrent('', () => {})
@@ -41,4 +41,9 @@ test('delayCounter', async () => {
     await wait(50)
     expect(consoleMock).toHaveBeenCalledWith(i)
   }
+})
+
+test('promised', async () => {
+  const value = await promised('hello')
+  expect(value).toBe('hello')
 })
