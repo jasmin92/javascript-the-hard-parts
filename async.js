@@ -37,3 +37,9 @@ export function delayCounter(target, wait) {
     console.log(index++)
   }, wait)
 }
+
+export function promised(value) {
+  return new Promise((reslove) => setTimeout(() => reslove(value), 2000))
+}
+
+// export class
